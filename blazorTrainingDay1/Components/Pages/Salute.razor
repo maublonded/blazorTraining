@@ -1,0 +1,26 @@
+﻿@page "/salute"
+@rendermode InteractiveServer
+
+<PageTitle>Salute</PageTitle>
+
+<h1>Say Hi!</h1>
+
+<label>What's your name?</label>
+<InputText @bind-Value="nombreUsuario" class="form-control"/>
+
+<button class="btn btn-primary" @onclick="Saludar"> Say Hi! </button>
+
+@if (!string.IsNullOrEmpty(saludo)) {
+<p class="mt-3">@saludo</p>
+}
+
+@code {
+	private String nombreUsuario;
+	private String saludo;
+
+	private void Saludar() {
+		saludo = $"hello {nombreUsuario}";
+	}
+}
+
+

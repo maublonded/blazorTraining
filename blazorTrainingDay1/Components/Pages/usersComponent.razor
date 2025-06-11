@@ -1,0 +1,13 @@
+﻿<div class="card p-2 m-2 shadow">
+	<h4>@Name - @Age years old</h4>
+	<button class="btn btn-danger" @onclick="delete"> Delete User </button>
+</div>
+
+@code {
+	[Parameter]
+	public string name { get; set; }
+	[Parameter]
+	public int age { get; set; }
+	[Parameter]
+	public EventCallback onDelete { get; set; }
+}	

@@ -1,0 +1,26 @@
+﻿@page "/users"
+@rendermode InteractiveServer
+
+<PageTitle> Users List </PageTitle>
+<h3>Users</h3>
+
+<InputText @bind-Value="addName" class="form-control"/>
+<button @onclick="adduser"> Agregar Usuario </button>
+
+@foreach (var user in users) {
+	<usersComponent name="@user.name" age="@user.age" onDelete="@(() => deleteUser(user))"/>
+}
+
+@code {
+	public string addName;
+	public int age addAge;
+	public int counter = 0;
+
+	public List<(string Name, int Age)> users = new();
+
+	public void adduser() {
+		users.Add((addName, addAge));
+		addName = string.Empty;
+		addAge = 0;
+	}
+}
