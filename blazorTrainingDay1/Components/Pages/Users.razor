@@ -4,16 +4,19 @@
 <PageTitle> Users List </PageTitle>
 <h3>Users</h3>
 
+<p>Ingrese su nombre</p>
 <InputText @bind-Value="addName" class="form-control"/>
+<p>Ingrese su edad</p>
+<InputNumber @bind-Value="addAge" class="form-control"/>
 <button @onclick="adduser"> Agregar Usuario </button>
 
 @foreach (var user in users) {
-	<usersComponent name="@user.name" age="@user.age" onDelete="@(() => deleteUser(user))"/>
+	<UsersComp name="@user.Name" age="@user.Age" onDelete="@(() => deleteUser(user))"/>
 }
 
 @code {
 	public string addName;
-	public int age addAge;
+	public int addAge;
 	public int counter = 0;
 
 	public List<(string Name, int Age)> users = new();
@@ -22,5 +25,10 @@
 		users.Add((addName, addAge));
 		addName = string.Empty;
 		addAge = 0;
+	}
+
+	public void deleteUser((string name, int age) user)
+	{
+		users.Remove(user);
 	}
 }
