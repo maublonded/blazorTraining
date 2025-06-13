@@ -4,8 +4,8 @@ By the end of the month, the objective is to be a decent developer with blazor a
 
 Until June 12, the training has included:
 
-## 1. Theory and planning 
-## 2. Learning to get information from forms 
-## 3. Component creating and reusing 
-## 4. Component editing and object implementation 
-## 5. Obtain information via form to an object and modify it 
+### 1. Theory and planning 
+### 2. Learning to get information from forms 
+### 3. Component creating and reusing 
+### 4. Component editing and object implementation 
+### 5. Obtain information via form to an object and modify it 
