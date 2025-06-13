@@ -1,0 +1,50 @@
+﻿@page "/tasks"
+@rendermode InteractiveServer
+
+<h2>List of Tasks</h2>
+<p>Add your tasks, mark them as complete or delete them</p>
+
+<p>Enter your task name:</p>
+<InputText @bind-Value="addTaskName" class="form-control" />
+<p>Enter your task priority</p>
+<InputText @bind-Value="addPriority" class="form-control"/>
+<button class="btn btn-primary" @onclick="addTask">Add Task</button>
+
+@foreach (var task in TaskList)
+{
+	<TasksComp taskName="@task.taskName" taskPriority="@task.taskPriority" taskState="@task.taskState" onComplete="@(() => completeTask(task))" onDelete="@(() => deleteTask(task))"/>
+}
+@code {
+
+	public class tsk
+	{
+		public string taskName { get; set; }
+		public string taskPriority { get; set; }
+		public string taskState { get; set; }
+	}
+
+	public string addTaskName;
+	public string addPriority;
+	public string addState = "Not Completed";
+
+	public List<tsk> TaskList = new();
+
+	public void addTask()
+	{
+		TaskList.Add(new tsk {taskName = addTaskName, taskPriority = addPriority, taskState = addState});
+		addTaskName = string.Empty;
+		addPriority = string.Empty;
+		addState = "Not Completed";
+	}
+
+	public void completeTask(tsk task)
+	{
+		task.taskState = "Completed";
+	}
+
+	public void deleteTask(tsk task)
+	{
+		TaskList.Remove(task);
+	}
+
+}

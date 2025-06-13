@@ -1,0 +1,24 @@
+﻿<h3>Tasks List</h3>
+<div class="card p-2 m-2 shadow">
+	<h4>Task:</h4>
+	<p>@taskName</p>
+	<h5>Priority:</h5>
+	<p>@taskPriority</p>
+	<h5>State:</h5>
+	<p>@taskState</p>
+	<button class="btn bg-success" @onclick="onComplete">Complete Task</button>
+	<button class="btn alert-danger" @onclick="onDelete">Delete Task</button>
+</div>
+
+@code {
+	[Parameter]
+	public string? taskName { get; set; } 
+	[Parameter]
+	public string? taskPriority { get; set; }
+	[Parameter]
+	public string? taskState { get; set; }
+	[Parameter]
+	public EventCallback onComplete { get; set; }
+	[Parameter]
+	public EventCallback onDelete { get; set; }
+}

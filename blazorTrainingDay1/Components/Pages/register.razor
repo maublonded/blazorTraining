@@ -1,0 +1,48 @@
+﻿@page "/register"
+@using System.ComponentModel.DataAnnotations
+@using blazorTrainingDay1.Models
+
+<h3>Register Users Form</h3>
+
+<EditForm Model="@user" OnValidSubmit="registerUser" FormName="UserRegistrationForm">
+	<DataAnnotationsValidator/>
+	<ValidationSummary/>
+
+	<div>
+		<label>Name:</label>
+		<InputText @bind-Value="user.Name" class="form-control"/>
+		<ValidationMessage For="@(() => user.Name)"/>
+	</div>
+
+	<div>
+		<label>Age:</label>
+		<InputNumber @bind-Value="user.Age" class="form-control"/>
+		<ValidationMessage For="@(() => user.Age)"/>
+	</div>
+
+	<div>
+		<label>E-Mail:</label>
+		<InputText @bind-Value="user.Email" class="form-control"/>
+		<ValidationMessage For="@(() => user.Email)"/>
+	</div>
+
+	<div>
+		<label>Password:</label>
+		<InputText @bind-Value="user.Password" class="form-control"/>
+		<ValidationMessage For="@(() => user.Password)"/>
+	</div>
+
+	<button class="btn btn-primary mt-3" type="submit">Register</button>
+</EditForm>
+	<p>@successMessage</p>
+@code {
+	[SupplyParameterFromForm]
+	private UsersModel user { get; set; } = new UsersModel();
+	public string successMessage;
+	
+	public void registerUser()
+	{
+		successMessage = $"User {user.Name} was registered successfully";
+		user = new();
+	}
+}
