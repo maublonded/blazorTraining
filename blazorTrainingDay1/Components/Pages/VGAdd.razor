@@ -1,0 +1,36 @@
+﻿@page "/VGAdd"
+@inject blazorTrainingDay1.Services.VGService VGService
+@layout Layout.VideoGamesLayout
+
+<div class="container mt-3">
+	<h3>Add Videogames to the List</h3>
+	<EditForm Model="vg" OnValidSubmit="registerVideogame" FormName="AddVideogameForm">
+		<DataAnnotationsValidator />
+		<ValidationSummary />
+		<div>
+			<label>Videogame's name:</label>
+			<InputText @bind-Value="vg.VGName" class="form-control" placeholder="Name"></InputText>
+			<ValidationMessage For="@(() => vg.VGName)"></ValidationMessage>
+		</div>
+		<div>
+			<label>Videogame's Category:</label>
+			<InputText @bind-Value="vg.VGCategory" class="form-control" placeholder="Category"></InputText>
+			<ValidationMessage For="@(() => vg.VGCategory)"></ValidationMessage>
+		</div>
+		<div>
+			<label>Videogame's year of release:</label>
+			<InputNumber @bind-Value="vg.VGYear" class="form-control" placeholder="Year"></InputNumber>
+			<ValidationMessage For="@(() => vg.VGYear)"></ValidationMessage>
+		</div>
+		<div>
+			<label>Videogame's rating:</label>
+			<InputNumber @bind-Value="vg.VGRating" class="form-control" placeholder="Rating"></InputNumber>
+			<ValidationMessage For="@(() => vg.VGRating)"></ValidationMessage>
+		</div>
+
+		<button class="btn btn-success" type="submit">Save Videogame</button>
+	</EditForm>
+
+	<p class="mt-3">@successMessage</p>
+</div>
+

@@ -1,0 +1,15 @@
+﻿@page "/VGCatalog"
+@inject Services.VGService VGservice
+@layout Layout.VideoGamesLayout
+<div>
+	<h3>Videogames Catalog</h3>
+
+	@foreach (var videogame in VGservice.GetGames())
+	{
+		<VGCard videog="@videogame"></VGCard>
+	}
+</div>
+
+@code {
+	
+}

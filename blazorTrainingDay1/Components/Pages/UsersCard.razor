@@ -1,0 +1,18 @@
+﻿@using blazorTrainingDay1.Models
+
+<div class="card p-2 m-2 shadow">
+	<h3>Name:</h3> <p>@user.Name</p>
+	<h4>Age:</h4> <p>@user.Age</p>
+	<h4>Email:</h4><p>@user.Email</p>
+	<button class="btn-toolbar mt-2" @onclick="() => onEdit.InvokeAsync(user)"> Edit User</button>
+	<button class="btn-danger mt-2" @onclick="() => onDelete.InvokeAsync(user)"> Delete User</button>
+</div>
+
+@code {
+	[Parameter]
+	public UsersModel user { get; set; }
+	[Parameter]
+	public EventCallback<UsersModel> onEdit { get; set; }
+	[Parameter]
+	public EventCallback<UsersModel> onDelete { get; set; }
+}

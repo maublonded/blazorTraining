@@ -1,0 +1,54 @@
+﻿@page "/registerManagement"
+@layout Layout.SecondaryLayout
+@using System.ComponentModel.DataAnnotations
+@using blazorTrainingDay1.Models
+@using blazorTrainingDay1.Components
+
+<h3>Register and Edit Users</h3>
+
+<EditForm Model="@user" OnValidSubmit="registerUser" FormName="UserRegistrationForm">
+	<DataAnnotationsValidator />
+	<ValidationSummary />
+
+	<div>
+		<label>Name:</label>
+		<InputText @bind-Value="user.Name" class="form-control" />
+		<ValidationMessage For="@(() => user.Name)" />
+	</div>
+
+	<div>
+		<label>Age:</label>
+		<InputNumber @bind-Value="user.Age" class="form-control" />
+		<ValidationMessage For="@(() => user.Age)" />
+	</div>
+
+	<div>
+		<label>E-Mail:</label>
+		<InputText @bind-Value="user.Email" class="form-control" />
+		<ValidationMessage For="@(() => user.Email)" />
+	</div>
+
+	<div>
+		<label>Password:</label>
+		<InputText @bind-Value="user.Password" class="form-control" />
+		<ValidationMessage For="@(() => user.Password)" />
+	</div>
+
+	<button class="btn btn-primary mt-3" type="submit">Register</button>
+</EditForm>
+
+<p>@successMessage</p>
+
+<h4>Registered Users:</h4>
+@if (registeredUsers.Count == 0)
+{
+	<p>No users yet.</p>
+} else {
+	@foreach(var u in registeredUsers) {
+		<UsersCard user="@u" onDelete="deleteUser"/>
+	}
+}
+
+
+
+
