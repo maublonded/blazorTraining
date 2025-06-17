@@ -1,15 +1,33 @@
 ﻿@using Models
+@rendermode InteractiveServer
 
-<div class="card">
+<div class="card mt-3 container">
 	<h3>Videogame:</h3><p>@videog.VGName</p>
 	<h4>Category:</h4><p>@videog.VGCategory</p>
 	<h4>Year of release:</h4><p>@videog.VGYear</p>
 	<h4>Rating:</h4><p>@videog.VGRating</p>
 
-	<button class="btn btn-success mt-3">Edit</button> <button class="btn btn-danger mt-3">Delete</button>
+	<div>
+		<button class="btn btn-success mt-3" @onclick="HandleEdit">Edit</button>
+		<button class="btn btn-danger mt-3" @onclick="HandleDelete">Delete</button>
+	</div>
 </div>
 
 @code {
 	[Parameter]
 	public VGModel videog { get; set; }
+	[Parameter]
+	public EventCallback<VGModel> onDelete { get; set; }
+	[Parameter]
+	public EventCallback<VGModel> onEdit { get; set; }
+
+	private async Task HandleDelete()
+	{
+		await onDelete.InvokeAsync(videog);
+	}
+
+	private async Task HandleEdit()
+	{
+		await onEdit.InvokeAsync(videog);
+	}
 }

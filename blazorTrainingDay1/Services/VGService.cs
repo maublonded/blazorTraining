@@ -11,9 +11,14 @@ namespace blazorTrainingDay1.Services
 			_games.Add(game);
 		}
 
-		public List<VGModel > GetGames()
+		public List<VGModel> GetGames()
 		{
 			return _games;
+		}
+
+		public void RemoveGame(VGModel game)
+		{
+			_games.Remove(game);
 		}
 	}
 }

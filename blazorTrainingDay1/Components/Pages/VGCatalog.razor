@@ -1,15 +1,40 @@
 ﻿@page "/VGCatalog"
+@rendermode InteractiveServer
 @inject Services.VGService VGservice
+@using Models
 @layout Layout.VideoGamesLayout
 <div>
 	<h3>Videogames Catalog</h3>
 
-	@foreach (var videogame in VGservice.GetGames())
+	@if (games.Count == 0)
 	{
-		<VGCard videog="@videogame"></VGCard>
+		<p>No games registered...</p>
+	}
+
+	@foreach (var videogame in games)
+	{
+		<VGCard videog="@videogame" onEdit="@(() => editGame(videogame))" onDelete="@(() => deleteGame(videogame))"></VGCard>
 	}
 </div>
 
 @code {
-	
+
+	private List<VGModel> games = new();
+
+	protected override void OnInitialized()
+	{
+		games = VGservice.GetGames();
+	}
+
+	void deleteGame(VGModel game)
+	{
+		games.Remove(game);
+		VGservice.RemoveGame(game);
+		StateHasChanged();
+	}
+
+	void editGame(VGModel game)
+	{
+		
+	}
 }

@@ -19,12 +19,12 @@
 		</div>
 		<div>
 			<label>Videogame's year of release:</label>
-			<InputNumber @bind-Value="vg.VGYear" class="form-control" placeholder="Year"></InputNumber>
+			<InputNumber @bind-Value="vg.VGYear" class="form-control" placeholder="Year" default=""></InputNumber>
 			<ValidationMessage For="@(() => vg.VGYear)"></ValidationMessage>
 		</div>
 		<div>
 			<label>Videogame's rating:</label>
-			<InputNumber @bind-Value="vg.VGRating" class="form-control" placeholder="Rating"></InputNumber>
+			<InputNumber @bind-Value="vg.VGRating" class="form-control" placeholder="Rating" default=""></InputNumber>
 			<ValidationMessage For="@(() => vg.VGRating)"></ValidationMessage>
 		</div>
 
